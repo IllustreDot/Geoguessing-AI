@@ -1,0 +1,2 @@
+# Geoguessing-AI
+Academic project
