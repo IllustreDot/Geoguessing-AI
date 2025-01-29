@@ -171,3 +171,8 @@ cython_debug/
 .pypirc
 
 dataset/
+sujet.pdf
+model.pth
+label_to_class.json
+input/
+output/
