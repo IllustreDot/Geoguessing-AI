@@ -4,18 +4,18 @@ import torch.nn as nn
 class ConvMLP(nn.Module):
     def __init__(self, params):
         super(ConvMLP, self).__init__()
-        self.conv1 = nn.Conv2d(in_channels=params['input_channels'], 
-                               out_channels=params['conv1_out_channels'], 
-                               kernel_size=params['conv_kernel_size'])
-        self.bn1 = nn.BatchNorm2d(params['conv1_out_channels'])
+        # self.conv1 = nn.Conv2d(in_channels=params['input_channels'], 
+        #                        out_channels=params['conv1_out_channels'], 
+        #                        kernel_size=params['conv_kernel_size'])
+        # self.bn1 = nn.BatchNorm2d(params['conv1_out_channels'])
 
-        self.conv2 = nn.Conv2d(in_channels=params['conv1_out_channels'],
-                                 out_channels=params['conv2_out_channels'],
-                                 kernel_size=params['conv_kernel_size'])
+        # self.conv2 = nn.Conv2d(in_channels=params['conv1_out_channels'],
+        #                          out_channels=params['conv2_out_channels'],
+        #                          kernel_size=params['conv_kernel_size'])
         
-        self.bn2 = nn.BatchNorm2d(params['conv2_out_channels'])
+        # self.bn2 = nn.BatchNorm2d(params['conv2_out_channels'])
 
-        self.pool = nn.MaxPool2d(kernel_size=params['pool_kernel_size'])
+        # self.pool = nn.MaxPool2d(kernel_size=params['pool_kernel_size'])
 
         self.pool = nn.MaxPool2d(kernel_size=params['pool_kernel_size'])
         
@@ -37,15 +37,15 @@ class ConvMLP(nn.Module):
         Args:
             x: input tensor (e.g., a batch of images)
         '''
-        # Pass through convolutional layers with LeakyReLU and BatchNorm
-        x = self.conv1(x)
-        x = self.bn1(x)
-        x = nn.LeakyReLU(0.1)(x)  # LeakyReLU with negative slope 0.1
-        x = self.pool(x)
+        # # Pass through convolutional layers with LeakyReLU and BatchNorm
+        # x = self.conv1(x)
+        # x = self.bn1(x)
+        # x = nn.LeakyReLU(0.1)(x)  # LeakyReLU with negative slope 0.1
+        # x = self.pool(x)
         
-        x = self.conv2(x)
-        x = self.bn2(x)
-        x = nn.LeakyReLU(0.1)(x)
+        # x = self.conv2(x)
+        # x = self.bn2(x)
+        # x = nn.LeakyReLU(0.1)(x)
         x = self.pool(x)
         
         # Flatten the tensor for the fully connected layers

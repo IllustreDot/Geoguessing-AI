@@ -10,7 +10,7 @@ from model import ConvMLP
 
 
 transform = transforms.Compose([
-    transforms.Resize((360, 354)),
+    transforms.Resize((1536, 662)),
     transforms.ToTensor(),
     transforms.Normalize(mean=[0.5], std=[0.5]),
 ])
@@ -22,12 +22,12 @@ params = {
     'conv2_out_channels': 1,  # Second convolution output channels
     'conv_kernel_size': 3,  # 3x3 kernel
     'pool_kernel_size': 2,  # 2x2 pooling
-    'l_i_size': 7656,  # Flattened size after conv and pooling
+    'l_i_   size': 762624,  # Flattened size after conv and pooling
     'h_l1_size': 1024,  # Hidden layer 1 size
     'h_l2_size': 512,  # Hidden layer 2 size
     'h_l3_size': 256,  # Hidden layer 3 size
     'h_l4_size': 128,   # Hidden layer 4 size
-    'l_o_size': 124  # Output classes
+    'l_o_size': 18  # Output classes
 }
 
 dataset_dir = "./dataset"
@@ -46,16 +46,16 @@ print(class_indices.keys())
 
 min_class_size = min(len(indices) for indices in class_indices.values())
 
-# balanced_indices = []
+balanced_indices = []
 
-# for indices in class_indices.values():
-#     balanced_indices.extend(indices[:min_class_size])
+for indices in class_indices.values():
+    balanced_indices.extend(indices[:min_class_size])
 
-# balanced_dataset = Subset(dataset, balanced_indices)
+balanced_dataset = Subset(dataset, balanced_indices)
 
-# np.random.shuffle(balanced_indices)
+np.random.shuffle(balanced_indices)
 
-balanced_dataset = dataset # Comment this and uncomment above to use balanced dataset
+# balanced_dataset = dataset # Comment this and uncomment above to use balanced dataset
 
 train_size = int(0.6 * len(balanced_dataset))
 test_size = len(balanced_dataset) - train_size

@@ -176,3 +176,4 @@ model.pth
 label_to_class.json
 input/
 output/
+model/
